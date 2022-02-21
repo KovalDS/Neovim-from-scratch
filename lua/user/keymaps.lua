@@ -32,8 +32,8 @@ keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
 -- Navigate buffers
-keymap("n", "<S-l>", ":bnext<CR>", opts)
-keymap("n", "<S-h>", ":bprevious<CR>", opts)
+keymap("n", "<A-l>", ":bnext<CR>", opts)
+keymap("n", "<A-h>", ":bprevious<CR>", opts)
 
 -- Move text up and down
 keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
@@ -64,3 +64,9 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 -- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
 keymap("n", "<F4>", ":BufferLineCloseLeft<CR> :BufferLineCloseRight<CR>", opts)
+
+-- Open help in separate buffers
+-- Stored as example, use autocmd for this
+-- vim.cmd(":command -nargs=* Help help <args> | only | set buflisted")
+-- vim.cmd("cnoreabbrev <expr> h getcmdtype()==':' && getcmdpos()==2 ? 'Help' : 'h'")
+-- vim.cmd("cnoreabbrev <expr> help getcmdtype()==':' && getcmdpos()==6 ? 'Help' : 'help'")

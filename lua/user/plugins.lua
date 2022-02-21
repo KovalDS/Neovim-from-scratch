@@ -95,6 +95,10 @@ return packer.startup(function(use)
 
     -- Git
     use "lewis6991/gitsigns.nvim"
+    use "/tpope/vim-fugitive"
+
+    -- Autosave
+    use "/Pocco81/AutoSave.nvim"
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
