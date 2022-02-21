@@ -1,8 +1,16 @@
+local function resolve_status_line_bg()
+    if vim.g.tokyonight_style == "day" then
+        return "#f3f3f3"
+    else
+        return vim.fn.synIDattr(vim.fn.hlID("StatusLine"), "bg#")
+    end
+end
+
 local colors = {
     red = '#ca1243',
-    grey = '#a0a1a7',
+    grey = vim.fn.synIDattr(vim.fn.hlID("StatusLine"), "fg#"),
     black = '#383a42',
-    white = '#f3f3f3',
+    white = resolve_status_line_bg(),
     light_green = '#83a598',
     orange = '#fe8019',
     green = '#8ec07c',
@@ -18,6 +26,7 @@ local theme = {
     insert = { a = { fg = colors.black, bg = colors.light_green } },
     visual = { a = { fg = colors.black, bg = colors.orange } },
     replace = { a = { fg = colors.black, bg = colors.green } },
+    command = { a = { fg = colors.white, bg = colors.red}}
 }
 
 local empty = require('lualine.component'):extend()
@@ -80,7 +89,7 @@ require('lualine').setup {
     options = {
         theme = theme,
         component_separators = '',
-        section_separators = { left = '', right = '' },
+        section_separators = { left = '◣', right = '◢' },
 		disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline" },
     },
     sections = process_sections {
