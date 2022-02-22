@@ -8,3 +8,5 @@ if not status_ok then
     return
 end
 
+-- looks shitty :)
+-- vim.cmd('hi Normal guibg=NONE ctermbg=NONE')
