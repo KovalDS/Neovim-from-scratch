@@ -68,6 +68,9 @@ local setup = {
         v = { "j", "k" },
     },
 }
+function live_grep_by_file()
+    return '-g*.lua' -- TODO how to make this generic and switchable?
+end
 
 local opts = {
     mode = "n", -- NORMAL mode
@@ -115,7 +118,10 @@ local mappings = {
         p = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
         r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
         R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
-        s = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
+        -- s = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
+        s = { "<cmd>Git<CR> ", "Status"},
+        a = { "<cmd>Git blame --color-by-age --date=short --abbrev=5 -e<CR>", "Annotate"},
+        e = { "<cmd>Gedit<CR>", "Open index file"},
         u = {
             "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
             "Undo Stage Hunk",
@@ -170,6 +176,8 @@ local mappings = {
         R = { "<cmd>Telescope registers<cr>", "Registers" },
         k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
         C = { "<cmd>Telescope commands<cr>", "Commands" },
+        p = { "<cmd>Telescope resume<cr>", "Open previous telescope window"},
+        f = { "<cmd>lua require('telescope.builtin').live_grep({additional_args=live_grep_by_file})<cr>", "Search filtering by file" }
     },
 
     t = {

@@ -117,7 +117,7 @@ require('lualine').setup {
         { 
                 'filename',
                 file_status = false,
-                path = 1,
+                path = 1, -- TODO add keybinding to switch between full path and filename
                 cond = is_wide
         },
         { modified, color = { bg = colors.red } },

@@ -1,8 +1,17 @@
+function setup_help()
+    if vim.bo.filetype == 'help' then
+        vim.cmd('only | set buflisted')
+    end
+end
+
 vim.cmd [[
   augroup _general_settings
     autocmd!
     autocmd FileType qf,help,man,lspinfo nnoremap <silent> <buffer> q :close<CR> 
-    autocmd FileType help :only | set buflisted
+    " Example of printing file name and type in autocmmand. Run vim with -Vlogs.txt to see the output
+    " autocmd FileType help echo expand('<afile>')
+    " autocmd FileType help echo expand('<amatch>')
+    autocmd BufEnter * lua setup_help()
     autocmd TextYankPost * silent!lua require('vim.highlight').on_yank({higroup = 'Visual', timeout = 200}) 
     autocmd BufWinEnter * :set formatoptions-=cro
     autocmd FileType qf set nobuflisted
